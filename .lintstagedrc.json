@@ -1,0 +1,4 @@
+{
+  "*.ts": ["pnpm commit:check"],
+  "*.tsx": ["pnpm commit:check"]
+}
