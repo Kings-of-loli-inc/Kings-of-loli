@@ -1,6 +1,6 @@
 import { useState, VFC } from 'react';
 
-import styles from './Counter.module.css';
+import styles from './counter.module.css';
 
 interface CounterProperties {
   start?: number;
