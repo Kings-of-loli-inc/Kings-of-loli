@@ -2,11 +2,11 @@ import { useState, VFC } from 'react';
 
 import styles from './Counter.module.css';
 
-interface CounterProps {
+interface CounterProperties {
   start?: number;
 }
 
-export const Counter: VFC<CounterProps> = ({ start = 0 }) => {
+export const Counter: VFC<CounterProperties> = ({ start = 0 }) => {
   const [count, setCount] = useState(start);
 
   const handleIncrement = () => setCount(count + 1);
