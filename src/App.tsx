@@ -1,4 +1,5 @@
-import { Counter } from './components/Counter/Counter';
+/* eslint-disable unicorn/filename-case */
+import { Counter } from './components/counter/counter';
 
 function App() {
   return (
