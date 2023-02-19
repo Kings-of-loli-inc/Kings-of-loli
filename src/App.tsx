@@ -4,7 +4,7 @@ import { Counter } from './components/counter/counter';
 function App() {
   return (
     <div>
-      <p>🚀 HEAD OF PAPIK DEPARTMENT 🤘</p>
+      <p>🚀 HEAD OF PAPIK DEPARTMENT, Evgene 🤘</p>
       <div>
         <Counter start={0} />
       </div>

@@ -10,7 +10,8 @@
     "lint": "yarn lint:format && yarn lint:fix ",
     "lint:staged": "lint-staged",
     "commit:check:js": "tsc && eslint ./src --max-warnings=0 --ignore-path ./.gitignore",
-    "commit:check:css": "stylelint --max-warnings=0"
+    "commit:check:css": "stylelint --max-warnings=0",
+    "docker:dev": "docker kill web-container && docker rm web-container && docker rmi web-image && docker build -t web-image . && docker run -d --name web-container -v ${PWD}/src:/web/src -p 3000:3000 web-image"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.24.4",
