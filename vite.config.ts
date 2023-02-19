@@ -13,4 +13,15 @@ export default defineConfig({
       localsConvention: 'camelCase',
     },
   },
+  server: {
+    hmr: {
+      host: 'localhost',
+    },
+    watch: {
+      usePolling: true,
+    },
+    host: true,
+    strictPort: true,
+    port: 3000,
+  },
 });
