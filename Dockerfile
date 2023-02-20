@@ -4,7 +4,7 @@ ENV HOST=0.0.0.0
 
 WORKDIR /web
 
-COPY package*.json ./
+COPY package.json .
 
 RUN npm install -g pnpm
 

@@ -3,6 +3,16 @@ import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+    hmr: {
+      host: 'localhost',
+    },
+    watch: {
+      usePolling: true,
+    },
+  },
   plugins: [
     react({
       include: '**/*.tsx',
@@ -12,16 +22,5 @@ export default defineConfig({
     modules: {
       localsConvention: 'camelCase',
     },
-  },
-  server: {
-    hmr: {
-      host: 'localhost',
-    },
-    watch: {
-      usePolling: true,
-    },
-    host: true,
-    strictPort: true,
-    port: 3000,
   },
 });
