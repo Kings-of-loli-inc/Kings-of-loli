@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM --platform=linux/amd64 node:lts-alpine as builder
 
 ENV HOST=0.0.0.0
 
@@ -12,6 +12,8 @@ RUN pnpm install
 
 COPY . .
 
-EXPOSE 3000
+RUN pnpm build
 
-ENTRYPOINT [ "pnpm", "dev" ]
+FROM --platform=linux/amd64 nginx
+
+COPY --from=builder /web/dist /usr/share/nginx/html
