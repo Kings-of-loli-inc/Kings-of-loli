@@ -48,10 +48,10 @@ jobs:
         run: pnpm install
 
       - name: JS errors check
-        run: commit:check:js
+        run: pnpm commit:check:js
 
       - name: CSS errors check
-        run: commit:check:css
+        run: pnpm commit:check:css
 
       - name: Build
         run: pnpm build
