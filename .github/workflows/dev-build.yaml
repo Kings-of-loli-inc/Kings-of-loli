@@ -11,7 +11,7 @@ on:
       - '!master'
 
 jobs:
-  cache-and-setup:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -46,18 +46,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-  linters:
-    runs-on: ubuntu-latest
 
-    steps:
       - name: JS errors check
         run: pnpm commit:check:js
 
       - name: CSS errors check
         run: pnpm commit:check:css
-  build:
-    runs-on: ubuntu-latest
 
-    steps:
       - name: Build
         run: pnpm build
