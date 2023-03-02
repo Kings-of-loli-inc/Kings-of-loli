@@ -3,8 +3,8 @@ import { useState, VFC } from 'react';
 import { AuthorizationButton } from '../../components/authorizarion-button/authorization-button';
 import { AuthorizationHeader } from '../../components/authorization-header/authorization-header';
 import { AuthorizationWrapper } from '../../components/authorization-page-wrapper/authorization-page-wrapper';
+import styles from './log-in.module.css';
 import { LogInForm } from './log-in-form/log-in-form';
-import styles from './log-in-page.module.css';
 
 export const LogIn: VFC = () => {
   const [health, setHealth] = useState(3);

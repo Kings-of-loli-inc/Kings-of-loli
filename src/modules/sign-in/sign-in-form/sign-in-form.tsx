@@ -7,7 +7,7 @@ import { FormInput } from '../../../components/input/form-input';
 import { SIGN_UP_FORM_CONSTANTS } from '../../../constants/authorization-consts/authorization-consts';
 import { useHookForm } from '../../../hooks/use-form';
 import { AuthorizationFormProperties } from '../../../interfaces/authorization-form-interfaces/authorization-form-properties';
-import styles from './sign-up-form.module.css';
+import styles from './sign-in-form.module.css';
 
 const SignUpFormSchema = z.object({
   nickname: z
@@ -18,7 +18,7 @@ const SignUpFormSchema = z.object({
 });
 type Schema = z.infer<typeof SignUpFormSchema>;
 
-export const SignUpForm: VFC<AuthorizationFormProperties> = ({ onSubmit }) => {
+export const SignInForm: VFC<AuthorizationFormProperties> = ({ onSubmit }) => {
   const {
     register,
     formState: { errors, isValid },

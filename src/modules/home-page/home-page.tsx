@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 
 import { NavigationPageWrapper } from '../../components/navigation-page-wrapper/navigation-page-wrapper';
-import styles from './main-page.module.css';
+import styles from './home-page.module.css';
 export const HomePage: VFC = () => {
   return (
     <NavigationPageWrapper>
