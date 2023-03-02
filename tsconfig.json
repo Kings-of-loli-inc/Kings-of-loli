@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "plugins": [{"name": "ts-css-modules-vite-plugin", "root": "./"}]
+    "plugins": [{ "name": "ts-css-modules-vite-plugin", "root": "./" }]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
