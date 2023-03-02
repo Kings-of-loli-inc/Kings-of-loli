@@ -1,16 +1,7 @@
 {
-  "ignoreFiles": [
-    ".git",
-    "dist",
-    "node_modules"
-  ],
-  "files": [
-    "src/**.module.css"
-  ],
-  "extends": [
-    "stylelint-config-standard",
-    "stylelint-config-clean-order"
-  ],
+  "ignoreFiles": [".git", "dist", "node_modules"],
+  "files": ["src/**.module.css"],
+  "extends": ["stylelint-config-standard", "stylelint-config-clean-order"],
   "plugins": [
     "stylelint-css-modules-no-global-scoped-selector",
     "stylelint-csstree-validator",
@@ -20,9 +11,7 @@
     "css-modules/no-global-scoped-selector": [
       true,
       {
-        "fileExtensions": [
-          ".module.css"
-        ]
+        "fileExtensions": [".module.css"]
       }
     ],
     "csstree/validator": true,
