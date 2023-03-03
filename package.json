@@ -6,10 +6,10 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
-    "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
-    "lint": "yarn lint:format && yarn lint:fix ",
+    "lint:prettier": "prettier --check ./src",
+    "lint:eslint": "eslint ./src --max-warnings=0 --ignore-path ./.gitignore",
     "lint:staged": "lint-staged",
-    "commit:check:js": "tsc && eslint ./src --max-warnings=0 --ignore-path ./.gitignore",
+    "commit:check:js": "tsc && pnpm lint:prettier && pnpm lint:eslint",
     "commit:check:css": "stylelint --max-warnings=0",
     "docker:dev": "docker-compose up"
   },
