@@ -1,11 +1,7 @@
 {
-  ".ts": [
-    "pnpm commit:check:js"
-  ],
-  ".tsx": [
-    "pnpm commit:check:js"
-  ],
-  "*.css": [
-    "pnpm commit:check:css"
+  "*.{js,jsx,ts,tsx}": [
+    "tsc-files --noEmit",
+    "eslint --max-warnings=0 --ignore-pattern '!.prettierrc.js'",
+    "prettier --check"
   ]
 }
