@@ -1,15 +1,12 @@
 /* eslint-disable unicorn/filename-case */
-import { Counter } from './components/counter/counter';
+
+// import { GameField } from './modules/game-field/game-field';
+
+import { AppRoute } from './routes/app-route/app-route';
 
 function App() {
-  return (
-    <div>
-      <p>🚀 HEAD OF PAPIK DEPARTMENT, Evgene 🤘</p>
-      <div>
-        <Counter start={0} />
-      </div>
-    </div>
-  );
+  return <AppRoute />;
+  // return <GameField />;
 }
 
 export default App;

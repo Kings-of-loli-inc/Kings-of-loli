@@ -1,11 +1,5 @@
 {
-  ".ts": [
-    "pnpm commit:check:js"
-  ],
-  ".tsx": [
-    "pnpm commit:check:js"
-  ],
-  "*.css": [
-    "pnpm commit:check:css"
-  ]
+  ".ts": ["pnpm commit:check:js"],
+  ".tsx": ["pnpm commit:check:js"],
+  "*.css": ["pnpm commit:check:css"]
 }
