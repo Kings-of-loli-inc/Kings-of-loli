@@ -1,13 +1,26 @@
 import { VFC } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AuthorizationPageRoute } from '../authorization-page-route/authorization-page-route';
-import { MainPageRoute } from '../main-page-roure/main-page-route';
+import { HomePage } from '../../modules/home-page/home-page';
+import { LogIn } from '../../modules/log-in/log-in';
+import { ProfilePage } from '../../modules/profile-page/profile-page';
+import { SettingsPage } from '../../modules/settings-page/settings-page';
+import { SignIn } from '../../modules/sign-in/sign-in';
+import { StatsPage } from '../../modules/stats-page/stats-page';
 import styles from './app-route.module.css';
 export const AppRoute: VFC = () => {
   return (
     <div className={styles.app}>
-      <MainPageRoute />
-      <AuthorizationPageRoute />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/about" element={<ProfilePage />} />
+          <Route path="/stats" element={<StatsPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
