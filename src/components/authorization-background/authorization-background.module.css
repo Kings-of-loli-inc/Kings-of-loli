@@ -2,7 +2,8 @@
   display: flex;
   justify-content: flex-end;
 
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
 
   background-image: url('../../img/bg_image.png');
   background-repeat: no-repeat;
