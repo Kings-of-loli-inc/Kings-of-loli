@@ -1,0 +1,13 @@
+{
+  "extends": "tsconfig/vite.json",
+  "compilerOptions": {
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@server-trpc": ["../server/src/trpc"]
+    }
+  },
+  "include": ["src"]
+}
