@@ -11,6 +11,7 @@
     "packages/*"
   ],
   "scripts": {
+    "prepareDB": "cd ./apps/server/prisma && pnpx prisma db pull && pnpx prisma generate && cd ../../../",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint --parallel",
