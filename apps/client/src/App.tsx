@@ -1,6 +1,7 @@
 /* eslint-disable unicorn/filename-case */
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
+import React from 'react';
 import { useState } from 'react';
 
 import { HomeContainer } from './components/user/home-container';

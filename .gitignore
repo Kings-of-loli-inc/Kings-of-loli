@@ -23,4 +23,9 @@ yarn-error.log*
 # turbo
 .turbo
 
+# history
 .history
+
+# db
+dev.db
+dev.db-journal

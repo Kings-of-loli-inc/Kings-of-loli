@@ -25,9 +25,11 @@ module.exports = {
   },
   extends: [
     'turbo',
-    'eslint:recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:unicorn/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/strict',
     'plugin:prettier/recommended', // Make sure this is always the last element in the array.
   ],
   plugins: ['simple-import-sort', 'prettier', 'check-file'],

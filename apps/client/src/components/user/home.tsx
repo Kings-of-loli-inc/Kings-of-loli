@@ -1,13 +1,13 @@
-import { VFC } from 'react';
+import React, { FC } from 'react';
 
 import { RouterOutputs } from '../../trpc';
 
 type HomeProperties = {
-  users?: RouterOutputs['users']['getAll'];
+  users?: RouterOutputs['users'][''];
   onUserCreate: () => void;
 };
 
-export const Home: VFC<HomeProperties> = ({ users, onUserCreate }) => {
+export const Home: FC<HomeProperties> = ({ users, onUserCreate }) => {
   return (
     <>
       {console.log(users)}

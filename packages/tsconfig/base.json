@@ -1,13 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
-  "outDir": "./dist",
   "compilerOptions": {
     "composite": false,
     "declaration": true,
     "declarationMap": true,
     "noImplicitAny": true,
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
     "isolatedModules": true,
@@ -17,14 +15,8 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ESNext",
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "module": "ESNext",
-    "resolveJsonModule": true,
-    "noEmit": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+    "resolveJsonModule": true
+  }
 }

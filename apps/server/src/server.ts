@@ -1,28 +1,22 @@
-import {
-  CreateExpressContextOptions,
-  createExpressMiddleware,
-} from '@trpc/server/adapters/express';
+import { createExpressMiddleware } from '@trpc/server/adapters/express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 
-import { appRouter } from './trpc/routers';
-import { createTRPCContext } from './trpc/trpc';
+import { appRouter } from './modules/router';
+import { createTRPCContext } from './trpc';
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000' }));
+
+app.use(cookieParser());
+app.use(cors({ origin: process.env.ORIGIN }));
 
 app.use(
   '/trpc',
   createExpressMiddleware({
     router: appRouter,
-    createContext: ({ req, res }: CreateExpressContextOptions) => {
-      return {
-        req,
-        res,
-        ...createTRPCContext(),
-      };
-    },
+    createContext: createTRPCContext,
   }),
 );
 
-app.listen(5010, () => console.log('Server started on port 3000'));
+app.listen(process.env.PORT, () => console.log('Server started on port 3000'));
