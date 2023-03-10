@@ -1,2 +1,2 @@
-export { type PrismaType, prisma } from './prisma';
+export { prisma, type PrismaType } from './prisma';
 export { redisClient } from './redis';
