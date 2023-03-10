@@ -4,7 +4,7 @@ import { httpBatchLink } from '@trpc/client';
 import React from 'react';
 import { useState } from 'react';
 
-import { HomeContainer } from './components/user/home-container';
+import { HomeContainer } from './components/home/home-container';
 import { trpc } from './trpc';
 
 export function App() {
@@ -13,7 +13,12 @@ export function App() {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: 'http://localhost:5010/trpc',
+          url: 'http://localhost:5520/trpc',
+          headers() {
+            return {
+              authorization: 'will be token',
+            };
+          },
         }),
       ],
     }),
