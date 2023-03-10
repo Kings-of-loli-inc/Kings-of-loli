@@ -4,9 +4,9 @@
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "jsx": "react-jsx",
-    "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "rootDir": "./"
   },
-  "include": ["./src", "vite.config.js"],
+  "include": ["./", "vite.config.js", ".eslintrc.js"],
   "exclude": ["node_modules"]
 }

@@ -3,9 +3,21 @@
   "private": true,
   "version": "1.0.0",
   "main": "./server.ts",
+  "tsup": {
+    "entry": [
+      "src/server.ts"
+    ],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true,
+    "format": [
+      "esm",
+      "cjs"
+    ]
+  },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs",
-    "dev": "tsup src/index.ts --format cjs --watch --onSuccess \"node dist/index.js\"",
+    "build": "tsup",
+    "dev": "tsup --watch --onSuccess \"node dist/server.cjs\"",
     "lint": "eslint ./src --max-warnings=0 && tsc --noEmit",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
@@ -25,15 +37,15 @@
   },
   "dependencies": {
     "@prisma/client": "^4.11.0",
-    "eslint-config-base": "workspace:*",
-    "tsconfig": "workspace:*",
     "@trpc/server": "^10.14.1",
     "argon2": "^0.30.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "eslint-config-base": "workspace:*",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "redis": "^4.6.5",
+    "tsconfig": "workspace:*",
     "tsconfig-paths": "^4.1.2",
     "zod": "^3.21.4"
   }
