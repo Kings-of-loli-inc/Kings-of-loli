@@ -50,9 +50,9 @@ export const authRouter = router({
   me: protectedProcedure.query(({ ctx }) => {
     return ctx.user;
   }),
-  login: publicProcedure.input(loginInput).query(async ({ ctx, input: { name, password } }) => {
+  login: publicProcedure.input(loginInput).mutation(async ({ ctx, input: { name, password } }) => {
     const user = await ctx.prisma.user.findUnique({ where: { name } });
-    if (!user || !(await argon.verify(password, user.password))) {
+    if (!user || !(await argon.verify(user.password, password))) {
       throw new TRPCError({
         code: 'BAD_REQUEST',
         message: 'Invalid name or password',
@@ -60,7 +60,6 @@ export const authRouter = router({
     }
 
     const { access_token, refresh_token } = await signTokens(user);
-
     ctx.res.cookie('access_token', access_token, accessTokenCookieOptions);
     ctx.res.cookie('refresh_token', refresh_token, refreshTokenCookieOptions);
     ctx.res.cookie('logged_in', true, {
@@ -73,7 +72,7 @@ export const authRouter = router({
       access_token,
     };
   }),
-  logout: protectedProcedure.query(async ({ ctx }) => {
+  logout: protectedProcedure.mutation(async ({ ctx }) => {
     const user = ctx.user;
     if (!user?.id) return false;
     await redisClient.del(user.id.toString());
@@ -92,7 +91,7 @@ export const authRouter = router({
       throw new TRPCError({ code: 'FORBIDDEN', message });
     }
 
-    const decoded = verifyJwt<{ sub: string }>(refresh_token, 'refreshTokenPublicKey');
+    const decoded = verifyJwt<{ sub: string }>(refresh_token, 'refreshTokenPrivateKey');
 
     if (!decoded) {
       throw new TRPCError({ code: 'FORBIDDEN', message });
@@ -111,7 +110,7 @@ export const authRouter = router({
     }
 
     const access_token = signJwt({ sub: user.id }, 'accessTokenPrivateKey', {
-      expiresIn: `${environmentConfigs.accessTokenExpiresIn}m`,
+      expiresIn: `${environmentConfigs.accessTokenExpiresIn} m`,
     });
 
     ctx.res.cookie('access_token', access_token, accessTokenCookieOptions);
@@ -199,7 +198,7 @@ export type AppRouter = typeof appRouter;
 const app = express();
 
 app.use(cookieParser());
-app.use(cors({ origin: process.env.ORIGIN }));
+app.use(cors());
 
 app.use(
   '/trpc',
@@ -209,4 +208,4 @@ app.use(
   }),
 );
 
-app.listen(process.env.PORT, () => console.log('Server started on port 3000'));
+app.listen(environmentConfigs.backendPort, () => console.log('Server started on port 3000'));

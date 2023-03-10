@@ -1,20 +1,22 @@
 import type { CookieOptions } from 'express';
 
+import { environmentConfigs } from './environmental';
+
 const cookieOptions: CookieOptions = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
+  secure: environmentConfigs.env === 'production',
   sameSite: 'lax',
 };
 
 const accessTokenCookieOptions: CookieOptions = {
   ...cookieOptions,
-  secure: process.env.NODE_ENV === 'production',
-  expires: new Date(Date.now() + Number(process.env.ACCESS_TOKEN_EXPIRES_IN) * 60 * 1000),
+  secure: environmentConfigs.env === 'production',
+  expires: new Date(Date.now() + Number(environmentConfigs.accessTokenExpiresIn) * 60 * 1000),
 };
 
 const refreshTokenCookieOptions: CookieOptions = {
   ...cookieOptions,
-  expires: new Date(Date.now() + Number(process.env.REFRESH_TOKEN_EXPIRES_IN) * 60 * 10_000),
+  expires: new Date(Date.now() + Number(environmentConfigs.refreshTokenExpiresIn) * 60 * 10_000),
 };
 
 export { accessTokenCookieOptions, cookieOptions, refreshTokenCookieOptions };

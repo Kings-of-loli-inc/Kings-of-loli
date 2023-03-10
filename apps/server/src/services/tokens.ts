@@ -15,15 +15,13 @@ export const signJwt = (
   const tokenKey = environmentConfigs[key];
   if (!tokenKey) throw new Error('Can`t find key in env');
   const privateKey = Buffer.from(tokenKey, 'base64').toString('ascii');
-  return jwt.sign(payload, privateKey, {
-    ...options,
-    algorithm: 'RS256',
-  });
+
+  return jwt.sign(payload, privateKey, { ...options, algorithm: 'HS256' });
 };
 
 export const verifyJwt = <T>(
   token: string,
-  key: 'accessTokenPublicKey' | 'refreshTokenPublicKey',
+  key: 'accessTokenPrivateKey' | 'refreshTokenPrivateKey',
 ) => {
   try {
     const tokenKey = environmentConfigs[key];
@@ -38,9 +36,8 @@ export const verifyJwt = <T>(
 
 export const signTokens = async (user: Omit<User, 'password'>) => {
   await redisClient.set(`${user.id}`, JSON.stringify(user), {
-    EX: environmentConfigs.redisCacheExpiresIn * 60,
+    EX: Number(environmentConfigs.redisCacheExpiresIn) * 60,
   });
-
   const access_token = signJwt({ sub: user.id }, 'accessTokenPrivateKey', {
     expiresIn: `${environmentConfigs.accessTokenExpiresIn}m`,
   });
@@ -57,18 +54,16 @@ export const getHeaderUser = async ({ req }: CreateExpressContextOptions) => {
     const { access_token: cookiesAccessToken } = req.cookies as { access_token?: string };
 
     let access_token;
-    if (req.headers.authorization?.startsWith('Bearer')) {
-      access_token = req.headers.authorization.split(' ')[1];
+    if (req.headers.authorization) {
+      access_token = req.headers.authorization;
     } else if (cookiesAccessToken) {
       access_token = cookiesAccessToken;
     }
-
     if (!access_token) {
       return;
     }
 
-    const decoded = verifyJwt<{ sub: string }>(access_token, 'accessTokenPublicKey');
-
+    const decoded = verifyJwt<{ sub: string }>(access_token, 'accessTokenPrivateKey');
     if (!decoded) {
       return;
     }
