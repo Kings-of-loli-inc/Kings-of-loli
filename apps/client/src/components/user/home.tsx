@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 
-import { RouterOutputs } from '../../trpc';
+import type { RouterOutputs } from '../../trpc';
 
 type HomeProperties = {
-  users?: RouterOutputs['users'][''];
+  users?: RouterOutputs['users']['getAllUsers'];
   onUserCreate: () => void;
 };
 
