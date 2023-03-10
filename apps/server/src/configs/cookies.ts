@@ -1,4 +1,4 @@
-import { CookieOptions } from 'express';
+import type { CookieOptions } from 'express';
 
 const cookieOptions: CookieOptions = {
   httpOnly: true,
@@ -14,7 +14,7 @@ const accessTokenCookieOptions: CookieOptions = {
 
 const refreshTokenCookieOptions: CookieOptions = {
   ...cookieOptions,
-  expires: new Date(Date.now() + Number(process.env.REFRESH_TOKEN_EXPIRES_IN) * 60 * 1000),
+  expires: new Date(Date.now() + Number(process.env.REFRESH_TOKEN_EXPIRES_IN) * 60 * 10_000),
 };
 
-export { cookieOptions, accessTokenCookieOptions, refreshTokenCookieOptions };
+export { accessTokenCookieOptions, cookieOptions, refreshTokenCookieOptions };
