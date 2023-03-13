@@ -1,28 +1,33 @@
-import {
-  CreateExpressContextOptions,
-  createExpressMiddleware,
-} from '@trpc/server/adapters/express';
+import type { PrismaClient, User } from '@prisma/client';
+import { createExpressMiddleware } from '@trpc/server/adapters/express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import express from 'express';
+import express, { Request, Response } from 'express';
 
-import { appRouter } from './trpc/routers';
-import { createTRPCContext } from './trpc/trpc';
+import { environmentConfigs } from './configs';
+import { appRouter } from './modules/routes';
+import { createTRPCContext } from './trpc';
+
+export type TRPCContext = {
+  req: Request;
+  res: Response;
+  user?: Omit<User, 'password'>;
+  prisma: PrismaClient;
+};
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000' }));
+
+app.use(cookieParser());
+app.use(cors());
 
 app.use(
   '/trpc',
   createExpressMiddleware({
     router: appRouter,
-    createContext: ({ req, res }: CreateExpressContextOptions) => {
-      return {
-        req,
-        res,
-        ...createTRPCContext(),
-      };
-    },
+    createContext: createTRPCContext,
   }),
 );
 
-app.listen(5010, () => console.log('Server started on port 3000'));
+app.listen(environmentConfigs.backendPort, () =>
+  console.log(`Server started on port ${environmentConfigs.backendPort}`),
+);

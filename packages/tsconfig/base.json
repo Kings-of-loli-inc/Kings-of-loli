@@ -1,13 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
-  "outDir": "./dist",
   "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
     "composite": false,
     "declaration": true,
     "declarationMap": true,
     "noImplicitAny": true,
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
     "isolatedModules": true,
@@ -17,14 +17,18 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ESNext",
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "module": "ESNext",
     "resolveJsonModule": true,
-    "noEmit": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+    "strictFunctionTypes": false,
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "incremental": true,
+    "removeComments": true,
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": true,
+    "moduleDetection": "auto"
+  }
 }

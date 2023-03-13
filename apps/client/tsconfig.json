@@ -4,10 +4,9 @@
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@server-trpc": ["../server/src/trpc"]
-    }
+    "outDir": "./dist",
+    "rootDir": "./"
   },
-  "include": ["src"]
+  "include": ["./", "vite.config.js", ".eslintrc.js"],
+  "exclude": ["node_modules"]
 }

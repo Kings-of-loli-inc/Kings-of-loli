@@ -1,17 +1,6 @@
-import { initTRPC } from '@trpc/server';
+import { isAuthorized } from '../middleware';
+import { t } from '../trpc';
 
-import { prisma } from '../../src/database/prisma';
-
-const createInnerTRPCContext = () => {
-  return {
-    prisma,
-  };
-};
-
-export const createTRPCContext = () => {
-  return createInnerTRPCContext();
-};
-
-export const t = initTRPC.context<typeof createTRPCContext>().create({
-  isDev: true,
-});
+export const router = t.router;
+export const publicProcedure = t.procedure;
+export const protectedProcedure = t.procedure.use(isAuthorized);
